@@ -1,0 +1,86 @@
+//Time complexity : O(n)
+//Space complexity : O(n)
+
+/*Example :
+Sample Input 1: Mississippi
+Output : String has duplicates 
+
+Sample Input 2: play
+Output : String has only Unique Characters
+
+*/
+Solution 1:
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isUnique(string inputString)
+{
+	unordered_map<char,int> mp;
+	for(int i=0; i<inputString.length(); i++)
+	mp[inputString[i]]++;
+	
+	for(auto it=mp.begin(); it!=mp.end(); it++)
+	if(it->second > 1) return false;
+	
+	
+	return true;
+}
+
+int main() {
+	// your code goes here
+	string inputString;
+	cin >> inputString;
+	
+	if(isUnique(inputString))
+	cout << "Strings has only Unique Characters";
+	else 
+	cout << "Strings has duplicates";
+	
+	return 0;
+}
+
+Solution 2:
+//Time complexity : O(1)
+//Space complexity : O(1)
+
+/*Example :
+Sample Input 1: mississippi
+Output : String has duplicates 
+
+Sample Input 2: unique
+Output : String has only Unique Characters
+
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isUnique(string inputString)
+{
+	// If string contains only lowercase characters
+	int checker = 0;
+	
+	for(int i=0; i<inputString.length(); i++)
+	{
+		int v = inputString[i] - 'a';
+		
+		if((checker & (1 << v)) > 0) return false;
+		
+		checker |= (1 << v);
+	}
+	
+	
+	return true;
+}
+
+int main() {
+	// your code goes here
+	string inputString;
+	cin >> inputString;
+	
+	if(isUnique(inputString))
+	cout << "Strings has only Unique Characters";
+	else 
+	cout << "Strings has duplicates";
+	
+	return 0;
+}
