@@ -1,0 +1,95 @@
+Solution 1: (Not optimal)
+//Time complexity : O(nlogn)
+//Space complexity : O(1)
+
+/*Example :
+Sample Input 1: 
+Output : 
+
+Sample Input 2: 
+Output : 
+
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPermutate(string inputString1,string inputString2)
+{
+	//Base case 
+	if(inputString1.length() != inputString2.length()) return false;
+	
+	// o(logn)
+	sort(inputString1.begin(), inputString1.end());
+	
+	for(int i=0; i<inputString1.length(); i++)
+	{
+		if(inputString1[i] != inputString2[i]) return false;
+	}
+	
+	return true;
+}
+
+int main() {
+	// your code goes here
+	string inputString1 , inputString2;
+	cin >> inputString1 >> inputString2 ;
+	
+	if(isPermutate(inputString1, inputString2))
+	cout << "inputString1 is a permutation of inputString2";
+	else 
+	cout << "It is not a permutation of other string";
+	return 0;
+}
+
+Solution 2:
+//Time complexity : O(n)
+//Space complexity : O(1)
+
+/*Example :
+Sample Input 1: 
+Output : 
+
+Sample Input 2: 
+Output : 
+
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPermutate(string inputString1,string inputString2)
+{
+	//Base case 
+	if(inputString1.length() != inputString2.length()) return false;
+	
+	unordered_map<char,int> mp;
+	
+	for(int i=0; i<inputString1.length(); i++)
+	{
+		mp[inputString1[i]]++;
+	}
+	
+	
+	for(char c:inputString2)
+	{
+		mp[c]--;
+		if(mp[c] < 0)
+		return false;
+	}
+	
+	return true;
+}
+
+int main() {
+	// your code goes here
+	string inputString1 , inputString2;
+	cin >> inputString1 >> inputString2 ;
+	
+	if(isPermutate(inputString1, inputString2))
+	cout << "inputString1 is a permutation of inputString2";
+	else 
+	cout << "It is not a permutation of other string";
+	
+	return 0;
+}
+
+
