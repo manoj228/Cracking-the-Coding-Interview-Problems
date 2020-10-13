@@ -1,3 +1,11 @@
+/* Sample Input and Output
+Input : Tact Coa
+Output : True
+
+Input : Tact Co
+Output : False
+*/
+
 // Time Complexity : O(n)
 // Space Complexity : O(n)
 #include <bits/stdc++.h>
