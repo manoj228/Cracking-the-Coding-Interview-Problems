@@ -1,0 +1,39 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPalinPermutation(string inputString)
+{
+	map<char, int> mp;
+	for(auto x: inputString)
+	{
+		mp[x]++;
+	}
+	
+	bool found = false;
+	for(auto v : mp)
+	{
+		if(v.second % 2 == 1)
+		{
+			if(found)
+			return false;
+		
+		found = true;
+		}
+	}
+	
+	return true;
+}
+
+int main() {
+	string inputString;
+	cin >> inputString;
+	
+	if(isPalinPermutation(inputString))
+	cout << "True";
+	else 
+	cout << "False";
+	
+	return 0;
+}
