@@ -1,8 +1,8 @@
 /* Sample Input and Output
-Input : Tact Coa
+Input : tactcoa
 Output : True
 
-Input : Tact Co
+Input : tactCo
 Output : False
 */
 
@@ -42,6 +42,60 @@ int main() {
 	cout << "True";
 	else 
 	cout << "False";
+	
+	return 0;
+}
+
+Most Optimal Solution:
+/* Time complexity : O(n)
+   Space complexity : O(n) */
+#include <bits/stdc++.h>
+using namespace std;
+
+bool checkExactlyOneBitSet(int b){
+return (b & (b-1)) == 0;
+}
+
+int toggle(int b, int index)
+{
+	if(index < 0) return b;
+	
+	int m = 1 << index; 
+	
+	if((b & m) == 0)
+	b |= m;
+	else 
+	b &= ~m;
+	
+	return b;
+}
+
+int createBitVector(string inputString)
+{
+	int bitVector = 0;
+	for(char c: inputString)
+	{
+		int x = c - 'a';
+		bitVector = toggle(bitVector, x);
+	}
+	
+	return bitVector;
+}
+
+bool isPermutation(string inputString)
+{
+	int bitVector = createBitVector(inputString);
+	
+	return (bitVector == 0) || checkExactlyOneBitSet(bitVector);
+}
+
+int main() {
+	string inputString;
+	cin >> inputString;
+	
+    if(isPermutation(inputString))
+    cout << "True";
+    else cout << "False";
 	
 	return 0;
 }
